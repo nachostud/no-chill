@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No Chill</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        .game-container { text-align: center; }
+        canvas { border: 2px solid #00f; background: #000; }
+        .score { color: #fff; font-size: 24px; margin-bottom: 10px; }
+        .game-over { color: #ff0; font-size: 32px; margin-top: 10px; }
+        .instructions { color: #fff; margin-top: 10px; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="score">Score: <span id="score">0</span></div>
+        <canvas id="gameCanvas" width="600" height="500"></canvas>
+        <div class="instructions">Use WASD or Arrow Keys to move the cat!</div>
+        <div id="gameOver" class="game-over" style="display: none;">Game Over! Press R to restart</div>
+    </div>
+    <script>
+        // (Your JavaScript code remains unchanged)
+        // ... (Paste your full script here, unchanged from your previous code) ...
+    </script>
+</body>
+</html>
