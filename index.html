@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+   // Increased bird change movement (lowered bird.direction index for more frequent changes), fixed plant again.
 <html lang="en">
 
 <head>
@@ -90,10 +91,10 @@
             [1,2,2,2,2,2,2,1,1,2,2,2,2,1,1,1,1,2,2,2,2,1,1,2,2,2,2,2,2,1],
             [1,1,1,1,1,1,2,1,1,1,1,1,2,1,1,1,1,2,1,1,1,1,1,2,1,1,1,1,1,1],
             [1,2,2,2,2,2,2,1,1,2,2,2,2,2,2,2,2,2,2,2,2,1,1,2,2,2,2,2,2,1],
-            [1,2,1,1,1,1,2,1,1,2,1,1,1,0,0,0,0,1,1,1,2,1,1,2,1,1,1,1,2,1],
+            [1,2,1,1,1,1,2,1,1,2,1,1,0,0,0,0,0,0,1,1,2,1,1,2,1,1,1,1,2,1],
             [0,2,2,2,2,2,2,2,2,2,1,0,0,0,0,0,0,0,0,1,2,2,2,2,2,2,2,2,2,0],
             [1,2,1,1,1,1,2,1,1,2,1,0,0,0,0,0,0,0,0,1,2,1,1,2,1,1,1,1,2,1],
-            [1,2,2,2,2,2,2,1,1,2,1,1,1,1,1,1,1,1,1,1,2,1,1,2,2,2,2,2,2,1],
+            [1,2,2,2,2,2,2,1,1,2,1,1,0,0,0,0,0,0,1,1,2,1,1,2,2,2,2,2,2,1],
             [1,1,1,1,1,1,2,1,1,2,2,2,2,2,2,2,2,2,2,2,2,1,1,2,1,1,1,1,1,1],
             [1,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,1],
             [1,2,1,1,1,1,2,1,1,1,1,1,2,1,1,1,1,2,1,1,1,1,1,2,1,1,1,1,2,1],
@@ -132,9 +133,9 @@
             [1,2,1,1,1,1,1,1,2,1,1,1,1,2,1,1,2,1,1,1,1,2,1,1,1,1,1,1,2,1],
             [1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1],
             [1,2,1,1,2,1,1,1,2,1,1,2,1,1,1,1,1,1,2,1,1,2,1,1,1,2,1,1,2,1],
-            [1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1],
-            [1,2,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,2,1],
-            [1,3,2,2,2,2,2,2,2,1,1,2,2,2,2,2,2,2,2,1,1,2,2,2,2,2,2,2,3,1],
+            [1,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,1],
+            [1,2,1,1,1,1,1,1,2,1,1,2,2,2,2,2,2,2,2,1,1,2,1,1,1,1,1,1,2,1],
+            [1,3,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,3,1],
             [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         ];
 
@@ -167,7 +168,7 @@
         color: ['#ff0000', '#ffb8ff', '#00ffff', '#ffb852'][i],
         scared: false,
         speed: 0.06,
-        moveTimer: i * 30,
+        moveTimer: i * 1,
         home: { gridX: start.gridX, gridY: start.gridY },
         originalHome: { gridX: start.gridX, gridY: start.gridY } // Store original starting position
         }));
@@ -306,7 +307,7 @@
             birds.forEach((bird, index) => {
                 bird.speed = 0.08; // Faster than level 1
                 bird.scared = false;
-                bird.moveTimer = index * 30;
+                bird.moveTimer = index * 1;
                 
                 // Reset to center spawn positions for level 2
                 bird.gridX = 14 + (index - 1.5); 
@@ -334,7 +335,7 @@
                 bird.moveTimer++;
                 
                 // AI decision making when aligned to grid - more frequent decisions for freer movement
-                if (isAlignedToGrid(bird) && bird.moveTimer % 20 === 0) { // Changed from 60 to 20 for more frequent decisions
+                if (isAlignedToGrid(bird) && bird.moveTimer % 5 === 0) { // Changed from 60 to 20 for more frequent decisions
                     // Snap to exact grid position
                     bird.pixelX = bird.gridX * CELL_SIZE;
                     bird.pixelY = bird.gridY * CELL_SIZE;
@@ -759,7 +760,7 @@
             birds.forEach((bird, index) => {
                 bird.scared = false;
                 bird.speed = 0.06; // Level 1 speed
-                bird.moveTimer = index * 30;
+                bird.moveTimer = index * 1;
                 
                 // Reset to original starting positions
                 bird.gridX = bird.originalHome.gridX;
